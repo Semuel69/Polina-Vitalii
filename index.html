@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Весільне запрошення | Віталій & Поліна</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --cream:#f3ecdF;
+  --green:#2f4f3a;
+  --bordo:#7a2e2e;
+  --dark:#121212;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;font-family:'Playfair Display',serif;background:var(--cream);color:var(--dark)}
+section{min-height:100vh;padding:80px 24px;display:flex;align-items:center;justify-content:center}
+.container{max-width:420px;width:100%}
+.hidden{display:none}
+
+/* START */
+#startBtn{
+  padding:22px 52px;
+  border-radius:60px;
+  background:var(--dark);
+  color:var(--cream);
+  font-size:22px;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+  100%{transform:scale(1)}
+}
+
+/* DRONE */
+#drone{
+  position:absolute;
+  top:25%;
+  left:-200px;
+  width:140px;
+  height:40px;
+  background:#222;
+  border-radius:30px;
+  animation:fly 2.8s forwards;
+}
+@keyframes fly{to{left:120%}}
+
+/* CONFETTI */
+.confetti{
+  position:absolute;
+  width:10px;height:14px;
+  animation:fall 3s linear forwards;
+}
+@keyframes fall{
+  to{transform:translateY(120vh) rotate(360deg);opacity:0}
+}
+
+/* ENVELOPE */
+#envelope{
+  width:340px;height:220px;
+  background:#eee5d6;
+  box-shadow:0 30px 60px rgba(0,0,0,.35);
+  position:relative;
+}
+#flap{
+  position:absolute;
+  width:100%;height:100%;
+  background:#e2d6c3;
+  clip-path:polygon(0 0,100% 0,50% 60%);
+  transform-origin:top;
+  transition:1.8s ease;
+}
+#envelope.open #flap{transform:rotateX(180deg)}
+
+/* INVITE */
+.card{
+  background:#fff;
+  padding:64px 36px;
+  box-shadow:0 50px 100px rgba(0,0,0,.25);
+}
+.hand{font-family:'Cormorant Garamond',serif;font-size:40px;margin-bottom:16px}
+.subtitle{letter-spacing:2px;text-transform:uppercase;font-size:14px;color:var(--bordo)}
+.block{margin:48px 0;opacity:0;transform:translateY(40px);transition:1.2s}
+.block.show{opacity:1;transform:none}
+
+/* PHOTOS */
+.photo img{width:100%;border-radius:2px}
+
+/* TIMER */
+.timer{display:flex;justify-content:space-between;margin:32px 0}
+.timer div{text-align:center}
+.timer span{display:block;font-size:28px;color:var(--bordo)}
+
+/* COLORS */
+.colors{display:flex;gap:16px;justify-content:center;margin-top:16px}
+.colors div{width:44px;height:44px;border-radius:50%}
+
+/* MAP */
+iframe{width:100%;height:300px;border:none;margin-top:24px}
+
+/* CTA */
+.cta{
+  display:block;
+  margin-top:48px;
+  padding:18px;
+  text-align:center;
+  background:var(--bordo);
+  color:#fff;
+  text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<section id="start">
+  <button id="startBtn">Тицьнути</button>
+</section>
+
+<section id="scene" class="hidden">
+  <div id="drone"></div>
+  <div id="envelope"><div id="flap"></div></div>
+</section>
+
+<section id="content" class="hidden">
+<div class="container">
+<div class="card">
+
+<div class="block subtitle">Запрошення</div>
+<div class="block hand">Дорогий Таточко</div>
+
+<div class="block">
+Колись ми просто зустрілися…  
+А тепер не уявляємо життя одне без одного.
+</div>
+
+<div class="block photo">
+<img src="images/1.jpg">
+</div>
+
+<div class="block">
+І ось настав той самий день,  
+якого ми так довго чекали.
+</div>
+
+<div class="block photo">
+<img src="images/2.jpg">
+</div>
+
+<div class="block">
+<strong>8 серпня 2026 року</strong><br>
+ми скажемо одне одному «Так» назавжди.
+</div>
+
+<div class="block hand">Віталій & Поліна</div>
+
+<div class="block photo">
+<img src="images/3.jpg">
+</div>
+
+<div class="block">
+Ми дуже хочемо, щоб Ви були поруч у цей день.<br>
+Ваша присутність зробить наше свято по-справжньому теплим.
+</div>
+
+<div class="block timer" id="timer"></div>
+
+<div class="block">
+<strong>Початок:</strong> 16:00<br>
+<strong>Локація:</strong> місце нашої історії
+</div>
+
+<div class="block">
+<div class="subtitle">Дрес-код</div>
+<div class="colors">
+<div style="background:#f3ecdF"></div>
+<div style="background:#7a2e2e"></div>
+<div style="background:#2f4f3a"></div>
+<div style="background:#000"></div>
+</div>
+</div>
+
+<div class="block">
+<iframe src="https://www.google.com/maps?q=50.306785,24.215251&output=embed"></iframe>
+</div>
+
+<a class="cta block" href="https://t.me/+zPLaictmr1IyMjFi">Деталі про подію</a>
+
+</div>
+</div>
+</section>
+
+<script>
+const btn=document.getElementById('startBtn');
+btn.onclick=()=>{
+  document.getElementById('start').classList.add('hidden');
+  document.getElementById('scene').classList.remove('hidden');
+
+  for(let i=0;i<50;i++){
+    const c=document.createElement('div');
+    c.className='confetti';
+    c.style.left=Math.random()*100+'%';
+    c.style.background=['#7a2e2e','#2f4f3a','#000'][i%3];
+    document.body.appendChild(c);
+  }
+
+  setTimeout(()=>document.getElementById('envelope').classList.add('open'),1200);
+  setTimeout(()=>{
+    document.getElementById('scene').classList.add('hidden');
+    document.getElementById('content').classList.remove('hidden');
+  },3000);
+};
+
+const target=new Date('2026-08-08T16:00:00');
+setInterval(()=>{
+  const d=target-new Date();
+  const days=Math.floor(d/86400000);
+  const hours=Math.floor(d/3600000)%24;
+  document.getElementById('timer').innerHTML=
+  `<div><span>${days}</span>днів</div><div><span>${hours}</span>годин</div>`;
+},1000);
+
+const blocks=document.querySelectorAll('.block');
+window.addEventListener('scroll',()=>{
+  blocks.forEach(b=>{
+    if(b.getBoundingClientRect().top<window.innerHeight-80)b.classList.add('show');
+  });
+});
+</script>
+
+</body>
+</html>
